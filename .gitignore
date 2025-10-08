@@ -1,0 +1,60 @@
+# #################### #
+#  Python & Jupyter  #
+# #################### #
+
+# Sanal ortam klasörleri (venv, env vb.)
+.env
+.venv
+env/
+venv/
+ENV/
+VENV/
+
+# Python cache dosyaları
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Jupyter Notebook checkpoint'leri
+.ipynb_checkpoints
+
+# Build ve dağıtım artıkları
+build/
+dist/
+*.egg-info/
+
+
+# #################### #
+#  Veri ve Modeller  #
+# #################### #
+
+# Projeye özel - BÜYÜK DOSYALAR
+# Veri setlerini içeren klasör (En önemlisi bu!)
+data/
+/data/
+
+# Eğitilmiş model dosyalarının kaydedildiği klasör
+models/
+/models/
+*.h5
+*.hdf5
+*.pth
+*.pt
+
+
+# #################### #
+#  İDE ve OS Dosyaları #
+# #################### #
+
+# VS Code ayar klasörü
+.vscode/
+
+# PyCharm ayar klasörü
+.idea/
+
+# MacOS sistem dosyası
+.DS_Store
+
+# Windows thumbnail cache
+Thumbs.db

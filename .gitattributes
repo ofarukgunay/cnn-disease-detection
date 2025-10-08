@@ -1,2 +1,41 @@
-# Auto detect text files and perform LF normalization
-* text=auto
+# ############################################################### #
+#                         Genel Ayarlar                           #
+# ############################################################### #
+
+# Tüm dosyalar için varsayılan davranışı ayarla.
+# Git'in metin dosyalarını otomatik algılamasını sağla ve
+# tüm metin dosyalarında satır sonlarını LF (Unix stili) olarak standartlaştır.
+# Bu, Windows ve Linux/macOS kullanıcıları arasındaki tutarlılığı sağlar.
+* text=auto eol=lf
+
+
+# ############################################################### #
+#               Dosya Türüne Özel Ayarlar                         #
+# ############################################################### #
+
+# Python, Markdown ve diğer metin tabanlı dosyaların
+# her zaman metin olarak ele alındığından ve LF satır sonu kullandığından emin ol.
+*.py      text eol=lf
+*.md      text eol=lf
+*.txt     text eol=lf
+*.json    text eol=lf
+*.csv     text eol=lf
+*.yml     text eol=lf
+*.yaml    text eol=lf
+*.gitignore text eol=lf
+*.gitattributes text eol=lf
+
+# Jupyter Notebook dosyaları metindir, ancak özel bir diff aracı kullanmak en iyisidir.
+# Şimdilik sadece metin olarak işaretleyelim.
+*.ipynb   text eol=lf
+
+# Görüntü, video ve diğer binary (ikili) dosyaların metin olarak
+# algılanmadığından ve satır sonu dönüşümü yapılmadığından emin ol.
+*.png     binary
+*.jpg     binary
+*.jpeg    binary
+*.gif     binary
+*.zip     binary
+*.gz      binary
+*.h5      binary
+*.pth     binary
