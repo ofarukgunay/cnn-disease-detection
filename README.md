@@ -2,7 +2,7 @@
 
 Bu proje, gastrointestinal (GI) sistemden alınan endoskopik görüntüler üzerinde modern Konvolüsyonel Sinir Ağı (CNN) mimarilerinin performansını karşılaştırmayı amaçlamaktadır. Proje kapsamında, farklı CNN modelleri kullanılarak polipler, ülserler ve normal doku gibi çeşitli gastrointestinal bulguların sınıflandırılması hedeflenmiştir.
 
-**Yazar:** [Adınız Soyadınız]
+**Yazar:** Ömer Faruk Günay
 **Tarih:** Ekim 2025
 
 ---
@@ -20,7 +20,7 @@ Bu proje, gastrointestinal (GI) sistemden alınan endoskopik görüntüler üzer
 
 ## 🚀 Proje Hakkında
 
-Bu çalışmanın temel amacı, [Projenin amacını 1-2 cümle ile açıklayın. Örneğin: ...endoskopik görüntülerin otomatik analizinde derin öğrenmenin etkinliğini göstermek ve güncel CNN mimarilerinin bu alandaki başarımını ölçmektir.]
+Bu çalışmanın temel amacı, endoskopik görüntülerin otomatik analizinde derin öğrenmenin etkinliğini göstermek ve güncel CNN mimarilerinin bu alandaki başarımını ölçmektir.
 
 ---
 
@@ -85,17 +85,3 @@ Model eğitimi ve değerlendirme süreçleri `notebooks/` klasöründeki Jupyter
 
 ---
 
-## 🏆 Sonuçlar
-
-[Bu bölümü projeniz bittiğinde doldurun.]
-
-Tüm modeller test verisi üzerinde değerlendirilmiş ve aşağıdaki sonuçlar elde edilmiştir. En iyi sonuçlar kalın harflerle belirtilmiştir.
-
-| Model Adı      | Doğruluk (Accuracy) | Kesinlik (Precision) | Duyarlılık (Recall) | F1-Score |
-| :------------- | :------------------ | :------------------- | :------------------ | :------- |
-| EfficientNetV2 | 0.95                | 0.95                 | 0.94                | 0.94     |
-| ConvNeXt       | **0.97** | **0.97** | **0.96** | **0.96** |
-| ResNeXt        | 0.93                | 0.92                 | 0.92                | 0.92     |
-| MobileNetV3    | 0.91                | 0.90                 | 0.90                | 0.90     |
-
-[Buraya modellerin eğitim/kayıp grafikleri gibi görseller de ekleyebilirsiniz.]
