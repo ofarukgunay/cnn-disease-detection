@@ -1,6 +1,7 @@
 import os
 import shutil
 import threading
+import numpy as np
 from tkinter import *
 from tkinter import filedialog, messagebox, ttk
 from PIL import Image
