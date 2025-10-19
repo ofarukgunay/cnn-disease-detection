@@ -140,7 +140,7 @@ def start_preprocessing():
 # UI Elements
 dataset_path = StringVar(value=RAW_DATA_DIR)
 train_var = StringVar(value="80")
-val_var = StringVar(value="100")
+val_var = StringVar(value="10")
 test_var = StringVar(value="10")
 width_var = StringVar(value="224")
 height_var = StringVar(value="224")
