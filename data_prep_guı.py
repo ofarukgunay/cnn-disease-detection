@@ -38,7 +38,15 @@ def set_ui_state(state):
     for w in widgets:
         w.config(state=state)
 
+def cancel_preprocessing():
+    global cancel_processing
+    cancel_processing = True
+    progress_label.config(text="Cancelling... please wait ⏳")
+
+
 def start_preprocessing_thread():
+    global cancel_processing
+    cancel_processing = False
     thread = threading.Thread(target=start_preprocessing)
     thread.start()
 
@@ -104,6 +112,11 @@ def start_preprocessing():
             split_dir = os.path.join(output_dir, split_name, c)
             os.makedirs(split_dir, exist_ok=True)
             for fpath in file_list:
+                if cancel_processing:
+                    progress_label.config(text="Processing cancelled ❌")
+                    messagebox.showinfo("Cancelled", "Dataset preparation was cancelled by the user.")
+                    set_ui_state("normal")
+                    return
                 try:
                     img = Image.open(fpath).convert("RGB")
                     img = img.resize((width, height))
@@ -195,11 +208,17 @@ normalize_check.grid(row=0, column=0, padx=10)
 grayscale_check.grid(row=0, column=1, padx=10)
 augment_check.grid(row=0, column=2, padx=10)
 
-prepare_button = Button(
-    root, text="Prepare Dataset", bg="#4CAF50", fg="white", font=("Arial", 11, "bold"),
-    command=start_preprocessing_thread
-)
-prepare_button.pack(pady=25)
+button_frame = Frame(root)
+button_frame.pack(pady=25)
+
+prepare_button = Button(button_frame, text="Prepare Dataset", bg="#4CAF50", fg="white",
+                        font=("Arial", 11, "bold"), command=start_preprocessing_thread)
+prepare_button.grid(row=0, column=0, padx=10)
+
+cancel_button = Button(button_frame, text="Cancel", bg="#f44336", fg="white",
+                       font=("Arial", 11, "bold"), command=cancel_preprocessing)
+cancel_button.grid(row=0, column=1, padx=10)
+
 
 progress_label = Label(root, text="Progress: Waiting...", fg="gray")
 progress_label.pack(pady=5)
