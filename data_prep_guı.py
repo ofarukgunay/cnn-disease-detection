@@ -14,6 +14,10 @@ DATA_DIR = os.path.join(ROOT_DIR, "data")
 RAW_DATA_DIR = os.path.join(DATA_DIR, "kvasir-dataset-v2")
 PREPARED_DATA_DIR = os.path.join(DATA_DIR, "prepared-data")
 
+# Global değişkenler
+cancel_processing = False
+current_output_dir = None
+
 # Main Window
 root = Tk()
 root.title("Gastroenterology Dataset Preparation Tool")
@@ -28,7 +32,7 @@ def select_folder():
 # İşlem sırasında UI öğelerini devre dışı bırakma
 def set_ui_state(state):
     widgets = [
-        dataset_path,
+        dataset_entry,
         train_entry, val_entry, test_entry,
         width_entry, height_entry,
         output_entry,
@@ -51,6 +55,7 @@ def start_preprocessing_thread():
     thread.start()
 
 def start_preprocessing():
+    global current_output_dir
     set_ui_state("disabled")
 
     folder = dataset_path.get()
@@ -78,6 +83,7 @@ def start_preprocessing():
         return
 
     output_dir = os.path.join(PREPARED_DATA_DIR, folder_name)
+    current_output_dir = output_dir  # klasörü global değişkende tut
 
     # Eğer klasör zaten varsa, kullanıcıya sor
     if os.path.exists(output_dir):
@@ -113,6 +119,9 @@ def start_preprocessing():
             os.makedirs(split_dir, exist_ok=True)
             for fpath in file_list:
                 if cancel_processing:
+                    # iptal edildi → klasörü tamamen sil
+                    if current_output_dir and os.path.exists(current_output_dir):
+                        shutil.rmtree(current_output_dir)
                     progress_label.config(text="Processing cancelled ❌")
                     messagebox.showinfo("Cancelled", "Dataset preparation was cancelled by the user.")
                     set_ui_state("normal")
@@ -161,7 +170,8 @@ height_var = StringVar(value="224")
 output_folder_var = StringVar(value="prepared_" + str(random.randint(100, 999)))  # varsayılan isim
 
 Label(root, text="Dataset Folder:", font=("Arial", 11)).pack(pady=5)
-Entry(root, textvariable=dataset_path, width=45).pack()
+dataset_entry = Entry(root, textvariable=dataset_path, width=45)
+dataset_entry.pack()
 browse_button = Button(root, text="📂 Browse", command=select_folder)
 browse_button.pack(pady=5)
 
@@ -218,7 +228,6 @@ prepare_button.grid(row=0, column=0, padx=10)
 cancel_button = Button(button_frame, text="Cancel", bg="#f44336", fg="white",
                        font=("Arial", 11, "bold"), command=cancel_preprocessing)
 cancel_button.grid(row=0, column=1, padx=10)
-
 
 progress_label = Label(root, text="Progress: Waiting...", fg="gray")
 progress_label.pack(pady=5)
