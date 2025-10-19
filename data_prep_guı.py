@@ -28,6 +28,7 @@ def select_folder():
 # İşlem sırasında UI öğelerini devre dışı bırakma
 def set_ui_state(state):
     widgets = [
+        dataset_path,
         train_entry, val_entry, test_entry,
         width_entry, height_entry,
         output_entry,
